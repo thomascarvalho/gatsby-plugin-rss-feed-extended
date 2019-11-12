@@ -1,6 +1,6 @@
 {
-  "name": "@thomascarvalho/gatsby-plugin-rss-feed-extended",
-  "version": "0.0.2",
+  "name": "@dikalikatao/gatsby-plugin-rss-feed-extended",
+  "version": "0.0.3",
   "description": "add html parsers to gatsby-source-rss-feed library",
   "main": "gatsby-node.js",
   "author": "Thomas Carvalho <carvalho.thomas@gmail.com>",
@@ -53,6 +53,9 @@
     "format": "prettier --write \"{src,__tests__}/**/*.js\"",
     "test": "jest __tests__/",
     "cz": "git-cz"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": ">=8.0.0"
