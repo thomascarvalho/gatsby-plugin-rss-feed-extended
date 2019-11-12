@@ -5,6 +5,7 @@
   "main": "gatsby-node.js",
   "author": "Thomas Carvalho <carvalho.thomas@gmail.com>",
   "license": "MIT",
+  "private": false,
   "dependencies": {
     "rehype-parse": "^6.0.2",
     "unified": "^8.4.2",
