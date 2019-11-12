@@ -1,0 +1,59 @@
+{
+  "name": "@thomascarvalho/gatsby-plugin-rss-feed-extended",
+  "version": "0.0.1",
+  "description": "add html parsers to gatsby-source-rss-feed library",
+  "main": "gatsby-node.js",
+  "author": "Thomas Carvalho <carvalho.thomas@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "rehype-parse": "^6.0.2",
+    "unified": "^8.4.2",
+    "unist-builder": "^2.0.2",
+    "unist-util-select": "^3.0.0",
+    "unist-util-visit": "^2.0.1",
+    "unist-util-visit-parents": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-jest": "^24.9.0",
+    "babel-preset-gatsby-package": "^0.2.9",
+    "cross-env": "^6.0.3",
+    "git-cz": "^3.3.0",
+    "hast-util-to-html": "^6.0.2",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "rss"
+  ],
+  "peerDependencies": {
+    "gatsby": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thomascarvalho/gatsby-plugin-rss-feed-extended.git"
+  },
+  "scripts": {
+    "build": "babel src --out-dir . --ignore **/__tests__",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir . --ignore **/__tests__",
+    "format": "prettier --write \"{src,__tests__}/**/*.js\"",
+    "test": "jest __tests__/",
+    "cz": "git-cz"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
