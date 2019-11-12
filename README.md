@@ -15,7 +15,7 @@ gatsby-config.js
           }
         },
         {
-          resolve: `@thomascarvalho/gatsby-plugin-rss-feed-extended`,
+          resolve: `@dikalikatao/gatsby-plugin-rss-feed-extended`,
           options: {
             name: `RssFeedName`, // same name as above
           }
