@@ -1,7 +1,9 @@
 import unified from 'unified'
 import parse from 'rehype-parse'
+import u from 'unist-builder'
 import visit from 'unist-util-visit'
 import toHtml from 'hast-util-to-html'
+import { selectAll } from 'unist-util-select'
 
 export function parseHtml(html = '') {
   return unified()
@@ -53,10 +55,36 @@ export function replaceSpotifyLinks(htmlAST) {
   return htmlAST
 }
 
+const createYoutubeResponsiveIframe = (
+  node,
+  { width = '100%', height = 400 } = {}
+) => {
+  if (/youtube/.test(node.properties.src)) {
+    const oldNode = node
+    node.type = 'element'
+    node.children = [
+      u(oldNode.type, {
+        tagName: oldNode.tagName,
+        properties: oldNode.properties
+      })
+    ]
+    node.properties = {
+      class: 'youtube-container'
+    }
+    node.tagName = 'div'
+  }
+}
+
+export function replaceYoutubeIframe(htmlAST) {
+  const nodes = selectAll('element[tagName="iframe"]', htmlAST)
+  nodes.map(node => createYoutubeResponsiveIframe(node))
+  return htmlAST
+}
+
 function parseAndTransform({ rssNode }) {
   const content = rssNode.content.encoded
   const htmlAST = parseHtml(content)
-  const newAst = replaceSpotifyLinks(htmlAST)
+  const newAst = replaceYoutubeIframe(replaceSpotifyLinks(htmlAST))
   return toHtml(newAst)
 }
 

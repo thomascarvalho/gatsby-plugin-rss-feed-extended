@@ -1,7 +1,11 @@
 import u from 'unist-builder'
 import { selectAll } from 'unist-util-select'
 
-import { parseHtml, replaceSpotifyLinks } from '../src/extend-node-type'
+import {
+  parseHtml,
+  replaceSpotifyLinks,
+  replaceYoutubeIframe
+} from '../src/extend-node-type'
 
 test('parse html', () => {
   const html = '<h3>Title</h3><p>Paragraph</p>'
@@ -144,4 +148,14 @@ test('transform spotify playlist link', () => {
       }
     })
   )
+})
+
+test('transform youtube iframe', () => {
+  const html =
+    '<p>Bla bla bla</p><iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F4gKwlH0RBto%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D4gKwlH0RBto&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F4gKwlH0RBto%2Fhqdefault.jpg&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=youtube" width="854" height="480" frameborder="0" scrolling="no">&#x3C;a href="https://medium.com/media/f6344dc4ba5789fdb02e882849991a90/href">https://medium.com/media/f6344dc4ba5789fdb02e882849991a90/href&#x3C;/a></iframe><p>Bla bla bla</p>'
+
+  const ast = parseHtml(html)
+  const newAST = replaceYoutubeIframe(ast)
+
+  console.log(JSON.stringify(newAST))
 })
